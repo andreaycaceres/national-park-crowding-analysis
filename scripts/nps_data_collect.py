@@ -45,4 +45,3 @@ df.to_csv(
     "data/raw/nps_parks.csv",
     index=False
 )
-
