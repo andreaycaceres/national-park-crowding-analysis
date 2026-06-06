@@ -3,22 +3,22 @@ This project explores U.S. National Park visitation data from 2015 to 2025, sour
 
 Website: https://andreaycaceres.github.io/national-park-crowding-analysis/
 
-Research Questions:
-Which parks receive the most visitors?
-Which parks are growing fastest?
-What seasonal visitation patterns exist?
-How did COVID-19 affect visitation?
-Are Pacific Northwest parks becoming more crowded?
-What park characteristics predict visitation?
-Which parks are most vulnerable to overcrowding?
-Can future visitation be predicted?
-How do visitation trends differ by region?
-What role does hiking and outdoor recreation play in visitation growth?
+Research Questions:<br>
+Which parks receive the most visitors?<br>
+Which parks are growing fastest?<br>
+What seasonal visitation patterns exist?<br>
+How did COVID-19 affect visitation?<br>
+Are Pacific Northwest parks becoming more crowded?<br>
+What park characteristics predict visitation?<br>
+Which parks are most vulnerable to overcrowding?<br>
+Can future visitation be predicted?<br>
+How do visitation trends differ by region?<br>
+What role does hiking and outdoor recreation play in visitation growth?<br>
 
-Datasets
-National Park Visitation Data
-Source: National Park Service Visitor Use Statistics
-Years: 2015–2025
+Datasets<br>
+National Park Visitation Data<br>
+Source: National Park Service Visitor Use Statistics<br>
+Years: 2015–2025<br>
 
-National Park Characteristics Data
-Source: National Park Service API
+National Park Characteristics Data<br>
+Source: National Park Service API<br>
