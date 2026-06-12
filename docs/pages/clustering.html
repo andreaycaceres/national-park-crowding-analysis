@@ -34,13 +34,8 @@
     <p>K-Means clustering requires numeric, unlabeled data because it measures similarity between observations with mathematical distance calculations. Categorical variables such as park name, park code, and state were removed from the analysis and only numeric
     variables related to recreation, camping, lodging, activities, and entrance fees were used to form clusters. To further prepare the data, the dataset was aggregated by park name and the mean value of each feature picked was calculated, resulting in a single row that represented the average recreation, camping, lodging, and visitation characteristics of each park.
     Therefore, the dataset was reduced to one row for each national park for clustering analysis. I originally was going to leave visitation data, but after seeing the k-means results were mainly influenced by the sheer differences in visitation, I decided to remove 'Recreation Visits' and 'Visitation Hours' to determine what other features lead to certain grouping.</p>
-    <a href="../../data/clean/park_agg.csv" target="_blank">
-    Park-Level Clustering Dataset</a>
-  </div>
-
-  <div class="rp-dataset-block">
-    <h3>Code</h3>
-    <a href="../../notebooks/clustering.ipynb" target="_blank">Link to View Code</a>
+    <a href="../data/park_agg.csv" target="_blank">
+    National Parks Clustering Dataset</a>
   </div>
 
   <div class="rp-dataset-block">
@@ -55,7 +50,7 @@
     <figure class="rp-figure">
       <img src="../images/sil_plot.png" width="500px">
       <figcaption>Figure 3. Silhouette Plot</figcaption>
-      <p>The elbow plot in Figure 2 shows that the optimal number of clusters is around 4–5 clusters because that is where the "bend" of the elbow is. The silhouette scores and plot in Figure 3 tell us otherwise — two clusters have the highest silhouette score of 0.605, meaning that the cluster structure is strong and well defined.</p>
+      <p>The elbow plot in Figure 2 shows that the optimal number of clusters is around 4-5 clusters because that is where the "bend" of the elbow is. The silhouette scores and plot in Figure 3 tell us otherwise — two clusters have the highest silhouette score of 0.605, meaning that the cluster structure is strong and well defined.</p>
     </figure>
 
     <hr class="rp-separator">
