@@ -52,7 +52,7 @@
       <h2>Data Preparation</h2>
       <p>
         PCA uses numeric variables because it finds patterns based on the variance and relationships between quantitative features. Categorical variables such as park name, park code, and state were removed from the analysis and only numeric
-        variables related to recreation, camping, lodging, activities, and entrance fees were used to form clusters. To further prepare the data, the dataset was aggregated by park name and the mean value of each feature picked was calculated, resulting in a single row that represented the average recreation, camping, lodging, and visitation characteristics of each park.
+        variables related to recreation, camping, lodging, activities, and entrance fees were used to form principal components. To further prepare the data, the dataset was aggregated by park name and the mean value of each feature picked was calculated, resulting in a single row that represented the average recreation, camping, lodging, and visitation characteristics of each park.
         Therefore, the dataset was reduced to one row for each national park for clustering analysis. I originally was going to leave visitation data, but after seeing the k-means results were mainly influenced by the sheer differences in visitation, I decided to remove 'Recreation Visits' and 'Visitation Hours' to determine what other features lead to certain grouping.
       </p>
       <ul>
