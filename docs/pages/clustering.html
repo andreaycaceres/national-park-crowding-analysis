@@ -1,214 +1,236 @@
-<section class="rp-section">
-  <p class="rp-section-label">National Park Crowding Analysis</p>
-  <h2>Clustering</h2>
-  <hr class="rp-divider">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clustering – National Park Crowding Analysis</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
 
-  <div class="rp-dataset-block">
-    <h3>Overview</h3>
-    <p>
-      Clustering is an unsupervised exploratory data analysis technique used to identify groupings of similar data
-      points and form them into "clusters". Unlike supervised learning, clustering does not have a target variable or labels. Groups are made based on similarities in data,
-      grouping them together while differing from other groups.
-    </p>
-    <p>
-      There are two different methods of clustering, partitional and hierarchical clustering. Partitional clustering such as K-means, requires a
-      predefined number of clusters prior to running the algorithm. Hierarchical clustering does not need a predefined schema of clusters and groups data based on similarity. Distance metrics determine similarity based on the distances between data points.
-      Euclidean distance is calculated by measuring the straight line distance between points in a space.
-      Non-Euclidean distance, such as cosine similarity measures the cosine of an angle between points in a multidimensional space.
-    </p>
-    <p>
-      For this project, clustering helps identify which national parks are similar in terms of visitation trends and
-      park characteristics.
-    </p>
-  </div>
+<header>
+  <p class="eyebrow">National Park Crowding Analysis</p>
+  <h1>Clustering</h1>
+  <nav>
+    <a href="../index.html">Introduction</a>
+    <a href="dataprep_eda.html">Data Prep & EDA</a>
+    <a href="clustering.html" class="active">Clustering</a>
+    <a href="pca.html">PCA</a>
+    <a href="arm.html">ARM</a>
+    <a href="naivebayes.html">Naive Bayes</a>
+    <a href="dectrees.html">Decision Trees</a>
+    <a href="svms.html">SVMs</a>
+    <a href="regression.html">Regression</a>
+    <a href="nn.html">Neural Networks</a>
+    <a href="conclusions.html">Conclusions</a>
+  </nav>
+</header>
 
-  <figure class="rp-figure">
-    <img src="../images/clustering_example.png" width="700px" alt="Clustering example diagram">
-  </figure>
+<main>
+  <section class="rp-section">
+    <p class="section-label">National Park Crowding Analysis</p>
+    <hr class="rule">
 
-  <figure class="rp-figure">
-    <img src="../images/dendrogram_example.png" width="700px" alt="Dendrogram example">
-  </figure>
-
-  <hr class="rp-separator">
-
-  <figure class="rp-figure">
-    <img src="../images/park_agg.png" width="1000px" alt="Aggregated park data sample">
-    <figcaption>Clustering Sample Data</figcaption>
-  </figure>
-
-  <div class="rp-dataset-block">
-    <h3>Data Preparation</h3>
-    <p>
-      K-Means clustering requires numeric and unlabeled data because it measures similarity between observations with mathematical distance calculations. Categorical variables such as park name, park code, and state were removed from the analysis and only numeric
-      variables related to recreation, camping, lodging, activities, and entrance fees were used to form clusters.
-    </p>
-    <p>
-      The dataset was aggregated by park name, with the mean value calculated for each selected feature, resulting in
-      one row per national park. Visitation data (<em>Recreation Visits</em> and <em>Visitation Hours</em>) was
-      removed after initial k-means results showed clusters were driven primarily by differences in visitation volume,
-      obscuring other meaningful groupings.
-    </p>
-    <ul>
-      <li><a href="../data/park_agg.csv" target="_blank">National Parks Clustering Dataset</a></li>
-    </ul>
-  </div>
-
-  <div class="rp-dataset-block">
-    <h3>Results</h3>
-    <p>
-      To determine the optimal number of clusters (k), an elbow plot and silhouette scores were used.
-    </p>
+    <div class="rp-dataset-block">
+      <h2>Overview</h2>
+      <p>
+        Clustering is an unsupervised exploratory data analysis technique used to identify groupings of similar data
+        points and form them into "clusters". Unlike supervised learning, clustering does not have a target variable or labels. Groups are made based on similarities in data,
+        grouping them together while differing from other groups.
+      </p>
+      <p>
+        There are two different methods of clustering, partitional and hierarchical clustering. Partitional clustering such as K-means, requires a
+        predefined number of clusters prior to running the algorithm. Hierarchical clustering does not need a predefined schema of clusters and groups data based on similarity. Distance metrics determine similarity based on the distances between data points.
+        Euclidean distance is calculated by measuring the straight line distance between points in a space.
+        Non-Euclidean distance, such as cosine similarity measures the cosine of an angle between points in a multidimensional space.
+      </p>
+      <p>
+        For this project, clustering helps identify which national parks are similar in terms of visitation trends and
+        park characteristics.
+      </p>
+    </div>
 
     <figure class="rp-figure">
-      <img src="../images/elbow_plot.png" width="500px" alt="Elbow plot">
-      <figcaption>Figure 2. Elbow Plot</figcaption>
+      <img src="../images/clustering_example.png" width="700px" alt="Clustering example diagram">
     </figure>
 
     <figure class="rp-figure">
-      <img src="../images/sil_plot.png" width="500px" alt="Silhouette plot">
-      <figcaption>Figure 3. Silhouette Plot</figcaption>
+      <img src="../images/dendrogram_example.png" width="700px" alt="Dendrogram example">
     </figure>
 
-    <p>
-      The elbow plot in Figure 2 shows that the optimal number of clusters is around 4-5 clusters because that is where the "bend" of the elbow is. The silhouette scores and plot in Figure 3 tell us otherwise, two clusters have the highest silhouette score of
-      <strong>0.605</strong>, meaning that the cluster structure is strong and well defined.
-    </p>
-
     <hr class="rp-separator">
 
-    <div class="rp-dataset-block">
-      <p class="rp-section-label">K = 2</p>
-      <hr class="rp-divider">
-      <figure class="rp-figure">
-        <img src="../images/k_equal_2_clusters.png" width="500px" alt="K=2 cluster plot">
-      </figure>
-      <figure class="rp-figure">
-        <img src="../images/k_equal_2_feats.png" width="700px" alt="K=2 feature comparison">
-      </figure>
-      <p>
-        With k=2, the data divided into two broad groups: standard recreation parks and major destination parks.
-        The primary differences between clusters were in lodging, camping, and backcountry use, indicating that
-        overnight recreation opportunities were the key factor in cluster formation.
-      </p>
-      <ul>
-        <li>
-          <strong>Cluster 0</strong> has a mean of 16,715.81 for Non Recreation Visits and Non Recreation Hours. Concessioner lodging has an average of 1,106.73 people. The average tent campers for this cluster are ~2,093. Average RV campers is ~1,320 people and the average amount of backcountry backpackers is ~951. The average amount of miscellaneous stays is ~606. The average number of activities is 30 and the average entrance fee is $16.54.
-        </li>
-        <li>
-          <strong>Cluster 1</strong> contains only five parks: Yosemite, Yellowstone, Olympic, Grand Canyon, and Great Smoky Mountains. For cluster 1, Non Recreation Visits and Non Recreation Hours have a mean of ~215,910. Concessioner lodging has an average of ~30,556 stays. The average tent campers for this cluster are ~14,604. Average RV campers is ~9,335 people and the average amount of backcountry backpackers is ~11,638. The average amount of miscellaneous stays is ~1,291. The average number of activities is 41 and the average entrance fee is $27.
-        </li>
-      </ul>
-    </div>
-
-    <hr class="rp-separator">
-
-    <div class="rp-dataset-block">
-      <p class="rp-section-label">K = 3</p>
-      <hr class="rp-divider">
-      <figure class="rp-figure">
-        <img src="../images/k_equal_3_clusters.png" width="500px" alt="K=3 cluster plot">
-      </figure>
-      <figure class="rp-figure">
-        <img src="../images/k_equal_3_feats.png" width="700px" alt="K=3 feature comparison">
-      </figure>
-      <p>
-        The k=3 solution revealed three distinct groups. Recreation infrastructure, overnight accommodations, camping
-        activity, and visitor demand were the primary factors driving separation between parks.
-      </p>
-      <ul>
-        <li>
-          <strong>Cluster 0</strong> has a mean of 15,144 for Non Recreation Visits and Non Recreation Hours. Concessioner lodging has an average of ~714 people. The average tent campers for this cluster are ~1,702. Average RV campers is ~1,089 people and the average amount of backcountry backpackers is ~864. The average amount of miscellaneous stays is ~524. The average number of activities is 29 and the average entrance fee is $15.55.
-        </li>
-        <li>
-          <strong>Cluster 1</strong> contains six parks: Grand Teton, Yosemite, Yellowstone, Olympic, Grand Canyon, and Joshua Tree. For cluster 1, Non Recreation Visits and Non Recreation Hours have a mean of ~45,187. Concessioner lodging has an average of ~25,030 stays. The average tent campers for this cluster are ~10,711. Average RV campers is ~7,330 people and the average amount of backcountry backpackers is ~8,246. The average amount of miscellaneous stays is ~1,469. The average number of activities is 42 and the average entrance fee is $33.57.
-        </li>
-        <li>
-          <strong>Cluster 2</strong> contains only one national park: Great Smoky Mountains. The average number of Non Recreation Visits is 893,553 and concessioner lodging averages 880. Concessioner camping has a mean of 0. There are around 15,014 tent campers and 11,120 RV campers on average. Backcountry campers average 7,737, which is less than cluster 1. Miscellaneous overnight stays were ~2,183. Finally, Great Smoky Mountains has 36 activities and zero entrance fee.
-        </li>
-      </ul>
-    </div>
-
-    <hr class="rp-separator">
-
-    <div class="rp-dataset-block">
-      <p class="rp-section-label">K = 4</p>
-      <hr class="rp-divider">
-      <figure class="rp-figure">
-        <img src="../images/k_equal_4_clusters.png" width="500px" alt="K=4 cluster plot">
-      </figure>
-      <figure class="rp-figure">
-        <img src="../images/k_equal_4_feats.png" width="700px" alt="K=4 feature comparison">
-      </figure>
-      <p>
-        The k=4 solution revealed four distinct groups. The largest differences between clusters were in lodging,
-        camping activity, backcountry use, and entrance fees, suggesting that recreation infrastructure and overnight
-        opportunities were the major drivers of cluster formation.
-      </p>
-      <ul>
-        <li>
-          <strong>Cluster 0</strong> - lower-use parks with limited recreation infrastructure. Average
-          Non-Recreation Visits/Hours: ~17,624, concessioner lodging: ~178, tent campers: ~399 RV campers: ~248
-          backcountry use: ~623, 27 activities, entrance fee: $5.07 (lowest entrance fee).
-        </li>
-        <li>
-          <strong>Cluster 1</strong> - premier destination parks: Yosemite, Yellowstone, and Grand Canyon. Average
-          Non-Recreation Visits/Hours: ~39,524, concessioner lodging: ~48,561, concessioner camping: ~14,828, tent
-          campers: ~15,480, RV campers: ~9,604, backcountry use: ~13,503 (highest of all clusters), 39 activities,
-          entrance fee: $35 (highest of all clusters).
-        </li>
-        <li>
-          <strong>Cluster 2</strong> - Great Smoky Mountains National Park alone. Exceptionally high
-          Non-Recreation Visits/Hours averaging 893,554, tent campers: ~15,014, RV campers: ~11,120, miscellaneous
-          stays: ~2,183, concessioner lodging: ~881, concessioner camping: 0, entrance fee: $0.
-        </li>
-        <li>
-          <strong>Cluster 3</strong> - popular recreation-oriented parks: Acadia, Arches, Glacier, Grand Teton,
-          Olympic, Rocky Mountain, and Zion. Average Non-Recreation Visits/Hours: ~17,652, concessioner lodging:
-          ~2,259, concessioner camping: ~1,559, tent campers: ~4,202, RV campers: ~2,634, backcountry use: ~1,625,
-          34 activities, entrance fee: $28.93.
-        </li>
-      </ul>
-    </div>
-  </div>
-
-  <h3>Hierarchical Clustering</h3>
-
-  <div class="rp-dataset-block">
-    <p class="rp-section-label">Dendrogram</p>
-    <hr class="rp-divider">
     <figure class="rp-figure">
-      <img src="../images/dendrogram.png" width="800px" alt="Hierarchical clustering dendrogram">
+      <img src="../images/park_agg.png" width="1000px" alt="Aggregated park data sample">
+      <figcaption>Clustering Sample Data</figcaption>
     </figure>
+
+    <div class="rp-dataset-block">
+      <h2>Data Preparation</h2>
+      <p>
+        K-Means clustering requires numeric and unlabeled data because it measures similarity between observations with mathematical distance calculations. Categorical variables such as park name, park code, and state were removed from the analysis and only numeric
+        variables related to recreation, camping, lodging, activities, and entrance fees were used to form clusters.
+      </p>
+      <p>
+        The dataset was aggregated by park name, with the mean value calculated for each selected feature, resulting in
+        one row per national park. Visitation data (<em>Recreation Visits</em> and <em>Visitation Hours</em>) was
+        removed after initial k-means results showed clusters were driven primarily by differences in visitation volume,
+        obscuring other meaningful groupings.
+      </p>
+      <ul>
+        <li><a href="../data/park_agg.csv" target="_blank">National Parks Clustering Dataset</a></li>
+      </ul>
+    </div>
+
+    <div class="rp-dataset-block">
+      <h2>Results</h2>
+      <p>
+        To determine the optimal number of clusters (k), an elbow plot and silhouette scores were used.
+      </p>
+
+      <figure class="rp-figure">
+        <img src="../images/elbow_plot.png" width="500px" alt="Elbow plot">
+        <figcaption>Figure 2. Elbow Plot</figcaption>
+      </figure>
+
+      <figure class="rp-figure">
+        <img src="../images/sil_plot.png" width="500px" alt="Silhouette plot">
+        <figcaption>Figure 3. Silhouette Plot</figcaption>
+      </figure>
+
+      <p>
+        The elbow plot in Figure 2 shows that the optimal number of clusters is around 4-5 clusters because that is where the "bend" of the elbow is. The silhouette scores and plot in Figure 3 tell us otherwise, two clusters have the highest silhouette score of
+        <strong>0.605</strong>, meaning that the cluster structure is strong and well defined.
+      </p>
+
+      <hr class="rp-separator">
+
+      <div class="rp-dataset-block">
+        <p class="rp-section-label">K = 2</p>
+        <hr class="rp-divider">
+        <figure class="rp-figure">
+          <img src="../images/k_equal_2_clusters.png" width="500px" alt="K=2 cluster plot">
+        </figure>
+        <figure class="rp-figure">
+          <img src="../images/k_equal_2_feats.png" width="700px" alt="K=2 feature comparison">
+        </figure>
+        <p>
+          With k=2, the data divided into two broad groups: standard recreation parks and major destination parks.
+          The primary differences between clusters were in lodging, camping, and backcountry use, indicating that
+          overnight recreation opportunities were the key factor in cluster formation.
+        </p>
+        <ul>
+          <li>
+            <strong>Cluster 0</strong> has a mean of 16,715.81 for Non Recreation Visits and Non Recreation Hours. Concessioner lodging has an average of 1,106.73 people. The average tent campers for this cluster are ~2,093. Average RV campers is ~1,320 people and the average amount of backcountry backpackers is ~951. The average amount of miscellaneous stays is ~606. The average number of activities is 30 and the average entrance fee is $16.54.
+          </li>
+          <li>
+            <strong>Cluster 1</strong> contains only five parks: Yosemite, Yellowstone, Olympic, Grand Canyon, and Great Smoky Mountains. For cluster 1, Non Recreation Visits and Non Recreation Hours have a mean of ~215,910. Concessioner lodging has an average of ~30,556 stays. The average tent campers for this cluster are ~14,604. Average RV campers is ~9,335 people and the average amount of backcountry backpackers is ~11,638. The average amount of miscellaneous stays is ~1,291. The average number of activities is 41 and the average entrance fee is $27.
+          </li>
+        </ul>
+      </div>
+
+      <hr class="rp-separator">
+
+      <div class="rp-dataset-block">
+        <p class="rp-section-label">K = 3</p>
+        <hr class="rp-divider">
+        <figure class="rp-figure">
+          <img src="../images/k_equal_3_clusters.png" width="500px" alt="K=3 cluster plot">
+        </figure>
+        <figure class="rp-figure">
+          <img src="../images/k_equal_3_feats.png" width="700px" alt="K=3 feature comparison">
+        </figure>
+        <p>
+          The k=3 solution revealed three distinct groups. Recreation infrastructure, overnight accommodations, camping
+          activity, and visitor demand were the primary factors driving separation between parks.
+        </p>
+        <ul>
+          <li>
+            <strong>Cluster 0</strong> has a mean of 15,144 for Non Recreation Visits and Non Recreation Hours. Concessioner lodging has an average of ~714 people. The average tent campers for this cluster are ~1,702. Average RV campers is ~1,089 people and the average amount of backcountry backpackers is ~864. The average amount of miscellaneous stays is ~524. The average number of activities is 29 and the average entrance fee is $15.55.
+          </li>
+          <li>
+            <strong>Cluster 1</strong> contains six parks: Grand Teton, Yosemite, Yellowstone, Olympic, Grand Canyon, and Joshua Tree. For cluster 1, Non Recreation Visits and Non Recreation Hours have a mean of ~45,187. Concessioner lodging has an average of ~25,030 stays. The average tent campers for this cluster are ~10,711. Average RV campers is ~7,330 people and the average amount of backcountry backpackers is ~8,246. The average amount of miscellaneous stays is ~1,469. The average number of activities is 42 and the average entrance fee is $33.57.
+          </li>
+          <li>
+            <strong>Cluster 2</strong> contains only one national park: Great Smoky Mountains. The average number of Non Recreation Visits is 893,553 and concessioner lodging averages 880. Concessioner camping has a mean of 0. There are around 15,014 tent campers and 11,120 RV campers on average. Backcountry campers average 7,737, which is less than cluster 1. Miscellaneous overnight stays were ~2,183. Finally, Great Smoky Mountains has 36 activities and zero entrance fee.
+          </li>
+        </ul>
+      </div>
+
+      <hr class="rp-separator">
+
+      <div class="rp-dataset-block">
+        <p class="rp-section-label">K = 4</p>
+        <hr class="rp-divider">
+        <figure class="rp-figure">
+          <img src="../images/k_equal_4_clusters.png" width="500px" alt="K=4 cluster plot">
+        </figure>
+        <figure class="rp-figure">
+          <img src="../images/k_equal_4_feats.png" width="700px" alt="K=4 feature comparison">
+        </figure>
+        <p>
+          The k=4 solution revealed four distinct groups. The largest differences between clusters were in lodging,
+          camping activity, backcountry use, and entrance fees, suggesting that recreation infrastructure and overnight
+          opportunities were the major drivers of cluster formation.
+        </p>
+        <ul>
+          <li>
+            <strong>Cluster 0</strong> had a mean of 17,623.99 for Non Recreation Visits and Non Recreation Hours. Concessioner lodging averaged approximately 178 stays, while concessioner camping averaged 74 stays. Tent campers averaged 399 visitors, RV campers averaged 248 visitors, and backcountry use averaged 623 visitors. Parks in this cluster also had the lowest average entrance fee at $5.07 and offered an average of 27 activities. These results suggest that Cluster 0 represents lower-use parks with limited recreation infrastructure and overnight visitation.
+          </li>
+          <li>
+            <strong>Cluster 1</strong> contained Yosemite, Yellowstone, and Grand Canyon. This cluster had a mean of 39,524 for Non Recreation Visits and Non Recreation Hours. Concessioner lodging averaged 48,561 stays, concessioner camping averaged 14,828 stays, tent campers averaged 15,480 visitors, and RV campers averaged 9,604 visitors. Backcountry use averaged 13,503 visitors, the highest among all clusters. Parks in this cluster offered an average of 39 activities and had the highest average entrance fee at $35. These results indicate that Cluster 1 contains the premier destination parks with extensive recreation opportunities and visitor infrastructure.
+          </li>
+          <li>
+            <strong>Cluster 2</strong> consisted solely of Great Smoky Mountains National Park. This cluster had exceptionally high Non Recreation Visits and Non Recreation Hours, averaging 893,554. Tent campers averaged 15,014 visitors, RV campers averaged 11,120 visitors, and miscellaneous overnight stays averaged 2,183. However, concessioner lodging averaged only 881 stays, concessioner camping averaged 0, and the entrance fee was $0. The unique combination of extremely high visitation and recreation activity caused Great Smoky Mountains to form its own cluster.
+          </li>
+          <li>
+            <strong>Cluster 3</strong> included parks such as Acadia, Arches, Glacier, Grand Teton, Olympic, Rocky Mountain, and Zion. This cluster had a mean of 17,652 for Non Recreation Visits and Non Recreation Hours. Concessioner lodging averaged 2,259 stays, concessioner camping averaged 1,559 stays, tent campers averaged 4,202 visitors, and RV campers averaged 2,634 visitors. Backcountry use averaged 1,625 visitors, parks offered an average of 34 activities, and entrance fees averaged $28.93. These values indicate that Cluster 3 represents popular recreation-oriented parks that experience higher camping and recreation activity than Cluster 0 but are smaller in scale than the destination parks in Cluster 1.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Hierarchical Clustering</h2>
+
+    <div class="rp-dataset-block">
+      <p class="rp-section-label">Dendrogram</p>
+      <hr class="rp-divider">
+      <figure class="rp-figure">
+        <img src="../images/dendrogram.png" width="800px" alt="Hierarchical clustering dendrogram">
+      </figure>
+      <p>
+        The hierarchical clustering dendrogram shows how parks are grouped based on cosine similarity. Parks that merge
+        at lower distances are more similar, parks that merge at higher distances are less similar.
+      </p>
+      <p>
+        Yellowstone and Yosemite joined at a very low distance, indicating they share many recreation and visitor
+        characteristics. Grand Canyon also joined this group early, suggesting similar patterns of camping, lodging, and
+        recreation activity. Great Smoky Mountains remained separate from most parks until a much higher distance,
+        reflecting its unique profile which is consistent with the K-Means results since it formed its own cluster in both
+        the k=3 and k=4 solutions.
+      </p>
+      <p>
+        The major branch separations in the dendrogram suggest 3–4 clusters is appropriate, which aligns with the k=3
+        and k=4 K-Means solutions.
+      </p>
+    </div>
+
+    <h2>Conclusions</h2>
+
     <p>
-      The hierarchical clustering dendrogram shows how parks are grouped based on cosine similarity. Parks that merge
-      at lower distances are more similar, parks that merge at higher distances are less similar.
+      Clustering successfully identified meaningful groups of national parks based on recreation, camping, lodging, and
+      visitation characteristics. The k=2 solution separated standard recreation parks from major destination parks,
+      while k=3 and k=4 revealed additional structure within the data.
     </p>
     <p>
-      Yellowstone and Yosemite joined at a very low distance, indicating they share many recreation and visitor
-      characteristics. Grand Canyon also joined this group early, suggesting similar patterns of camping, lodging, and
-      recreation activity. Great Smoky Mountains remained separate from most parks until a much higher distance,
-      reflecting its unique profile which is consistent with the K-Means results since it formed its own cluster in both
-      the k=3 and k=4 solutions.
+      Great Smoky Mountains National Park consistently formed its own cluster due to its unique visitation and
+      recreation profile. Hierarchical clustering produced similar results and confirmed that 3–4 clusters were
+      appropriate for this dataset. Overall, lodging, camping activity, backcountry use, and recreation opportunities
+      were the strongest factors influencing how parks were grouped.
     </p>
-    <p>
-      The major branch separations in the dendrogram suggest 3–4 clusters is appropriate, which aligns with the k=3
-      and k=4 K-Means solutions.
-    </p>
-  </div>
 
-  <h3>Conclusions</h3>
+  </section>
+</main>
 
-  <p>
-    Clustering successfully identified meaningful groups of national parks based on recreation, camping, lodging, and
-    visitation characteristics. The k=2 solution separated standard recreation parks from major destination parks,
-    while k=3 and k=4 revealed additional structure within the data.
-  </p>
-  <p>
-    Great Smoky Mountains National Park consistently formed its own cluster due to its unique visitation and
-    recreation profile. Hierarchical clustering produced similar results and confirmed that 3–4 clusters were
-    appropriate for this dataset. Overall, lodging, camping activity, backcountry use, and recreation opportunities
-    were the strongest factors influencing how parks were grouped.
-  </p>
-
-</section>
+</body>
+</html>
