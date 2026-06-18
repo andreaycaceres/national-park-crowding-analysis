@@ -77,6 +77,18 @@
         removed after initial k-means results showed clusters were driven primarily by differences in visitation volume,
         obscuring other meaningful groupings.
       </p>
+      <p> Before scaling, the selected variables had very different numerical ranges. StandardScaler was used to transform each variable so that it had a mean near zero and a standard deviation near one. This prevents variables with larger values from having too much influence on the distance calculations used by K-Means. </p>
+      <figure class="rp-figure"> 
+        <img src="../images/before_scaling.png" width="1000px" alt="National park clustering data before scaling"> 
+        <figcaption> Figure 2. Clustering data before scaling. The variables have very different numerical ranges, with some values in the thousands and others below 100. </figcaption>
+      </figure>
+
+      <p> Before scaling, the selected variables had very different numerical ranges. StandardScaler was used to transform each variable so that it had a mean near zero and a standard deviation near one. This prevents variables with larger values from having too much influence on the distance calculations used by K-Means. </p>
+      <figure class="rp-figure"> 
+        <img src="../images/after_scaling.png" width="1000px" alt="National park clustering data after scaling"> 
+        <figcaption> Figure 3. Clustering data after standardization. The transformed values are placed on a comparable scale so that no single variable influences the clustering process. </figcaption>
+      </figure>
+
       <ul>
         <li><a href="../data/park_agg.csv" target="_blank">National Parks Clustering Dataset</a></li>
         <li><a href="../data/clustering.ipynb" target="_blank">Link to Clustering Code</a></li>
@@ -91,18 +103,21 @@
 
       <figure class="rp-figure">
         <img src="../images/elbow_plot.png" width="500px" alt="Elbow plot">
-        <figcaption>Figure 2. Elbow Plot</figcaption>
+        <figcaption>Figure 4. Elbow Plot</figcaption>
       </figure>
 
       <figure class="rp-figure">
         <img src="../images/sil_plot.png" width="500px" alt="Silhouette plot">
-        <figcaption>Figure 3. Silhouette Plot</figcaption>
+        <figcaption>Figure 5. Silhouette Plot</figcaption>
       </figure>
 
-      <p>
-        The elbow plot in Figure 2 shows that the optimal number of clusters is around 4-5 clusters because that is where the "bend" of the elbow is. The silhouette scores and plot in Figure 3 tell us otherwise, two clusters have the highest silhouette score of
-        <strong>0.605</strong>, meaning that the cluster structure is strong and well defined.
-      </p>
+      <p>The elbow plot suggests that the optimal number of clusters is around four or five because this is where the curve begins to bend. However, the silhouette scores suggest a different result. Two clusters produced the highest silhouette score of
+      <strong>0.605</strong>, indicating that the two-cluster solution had the clearest separation between groups.</p>
+
+      <p>Although k = 2 produced the highest silhouette score, it divided the parks into only two broad groups and provided limited detail about the differences among them. The k = 3 and k = 4 solutions created more meaningful groupings by separating lower-use parks, popular recreation-oriented parks, major destination parks, and Great Smoky Mountains National Park. Therefore, k = 2 was the strongest statistical solution, while k = 4 was more useful for interpreting differences among national parks.</p>
+
+      <p>The k = 4 solution was selected for the final interpretation because it provided the clearest and most meaningful separation between different types of national parks.</p>
+
 
       <hr class="rp-separator">
 
@@ -223,11 +238,12 @@
       visitation characteristics. The k=2 solution separated standard recreation parks from major destination parks,
       while k=3 and k=4 revealed additional structure within the data.
     </p>
-    <p>
-      Great Smoky Mountains National Park consistently formed its own cluster due to its unique visitation and
-      recreation profile. Hierarchical clustering produced similar results and confirmed that 3–4 clusters were
-      appropriate for this dataset. Overall, lodging, camping activity, backcountry use, and recreation opportunities
-      were the strongest factors influencing how parks were grouped.
+    <p> Great Smoky Mountains National Park consistently formed its own cluster due
+      to its unique visitation and recreation profile. Although the two-cluster
+      solution had the highest silhouette score, the four-cluster solution was
+      selected because it provided more meaningful distinctions among different
+      types of parks. Hierarchical clustering supported this interpretation by
+      showing several similar major groupings.
     </p>
 
   </section>

@@ -56,6 +56,17 @@
     <div class="rp-dataset-block">
       <h2>Dataset #2: National Parks API Data</h2>
       <p>The national parks dataset was prepared by filtering for national parks only, excluding national monuments and landmarks. A column was also added to capture the total number of activities each park offers for later analysis.</p>
+      <p>An API key was requested through the National Park Service developer website:
+        <a href="https://www.nps.gov/subjects/developer/get-started.htm" target="_blank">
+          NPS Developer Resources
+        </a>. </p>
+
+      <p> National park data was then collected using the NPS Parks API endpoint shown below.</p>
+
+      <pre><code>https://developer.nps.gov/api/v1/parks?limit=500&amp;api_key=YOUR_API_KEY
+      </code></pre>
+
+      <p> The API key is not displayed for security purposes.</p>
 
       <div class="rp-figure-pair">
         <figure class="rp-figure">
@@ -91,6 +102,33 @@
       <h2>Data Cleaning - Missing Values</h2>
       <p>For my visitation dataset, there were no missing values that had to be addressed. Unlike the visitation dataset, there were 20 missing values for 'Entrance Fees' in the NPS dataset. To address this, I researched the price of entrance for each park and verified they were all free to enter. Therefore, I manually entered 0 for these 20 national parks that had free entrance.</p>
     </div>
+    <div class="rp-dataset-block">
+      <h2>Data and Code</h2>
+      <ul>
+        <li>
+          <a href="../../notebooks/nps_parks.ipynb" target="_blank">
+          View National Parks API Data Cleaning Code
+          </a>
+      </li>
+
+        <li>
+          <a href="../../notebooks/visitation_data.ipynb" target="_blank">
+          View National Parks Visitation Data Cleaning Code
+          </a>
+        </li>
+
+      <li>
+        <a href="../../data/clean/combined_nps_visitation.csv" target="_blank">
+        View Cleaned Combined Dataset
+      </a>
+    </li>
+        <li>
+          <a href="../../notebooks/data_visualizations.ipynb" target="_blank">
+          View Data Visualizations Code
+          </a>
+        </li>
+  </ul>
+</div>
 
     <hr class="rp-separator">
 
