@@ -59,11 +59,11 @@
     <div class="rp-dataset-block">
       <h2>Data Preparation</h2>
       <p>The dataset was aggregated by park name with one row representing each national park. 
-        To create labeled data for supervised learning parks were classified into Low, Medium, and High visitation categories using Recreation Visits. 
+        To create labeled data for supervised learning parks were classified into Low, Medium and High visitation categories using Recreation Visits. 
         Because these labels were derived from visitation data, Recreation Visits and Recreation Hours were excluded from the predictor variables to prevent data leakage. 
-        The model used recreation, lodging, camping, overnight stay, activity, and entrance fee characteristics to predict visitation level.
+        The model used recreation, lodging, camping, overnight stay, activity and entrance fee characteristics to predict visitation level.
       </p>
-      <p>The data was split into training and testing sets using an 80/20 split with train_test_split. First, the features were split from their labels and “Crowding Levels” was created by grouping recreation visits into Low, Medium, and High categories. 
+      <p>The data was split into training and testing sets using an 80/20 split with train_test_split. First, the features were split from their labels and “Crowding Levels” was created by grouping recreation visits into Low, Medium and High categories. 
         Stratification was done so each class is represented in both datasets. The model was trained on the training set and then evaluated on the testing set. This was done to verify the results reflect how good the model performs on new and unseen data.</p>
       <figure class="rp-figure"> 
         <img src="../images/training_data.png" width="1000px" alt="Training data"> 
@@ -84,7 +84,7 @@
     <div class="rp-dataset-block">
       <h2>Results</h2>
       <p>
-        To see how well the Decision Tree modeling went, an accuracy score was conducted for three different types of decision trees. The first is an entropy decision tree, the second is a gini decision tree, and the third is another entropy tree with a higher set threshold to rule out overfitting.
+        To see how well the Decision Tree modeling went, an accuracy score was conducted for three different types of decision trees. The first is an entropy decision tree, the second is a gini decision tree and the third is another entropy tree with a higher set threshold to rule out overfitting.
       </p>
 
       <figure class="rp-figure">
@@ -128,15 +128,15 @@
         <figcaption>Figure 7. Confusion Matrix Plot</figcaption>
       </figure>
 
-      <p>For the Decision Tree analysis results, the supervised classification system could classify national parks into different levels of visitation: 'Low' visitation, 'Medium' visitation, and 'High' visitation better than random guessing. 
+      <p>For the Decision Tree analysis results, the supervised classification system could classify national parks into different levels of visitation: 'Low' visitation, 'Medium' visitation and 'High' visitation better than random guessing. 
         From the report above, the accuracy level is <strong>0.5</strong> or <strong>50%</strong>. Since random guessing would have had accuracy of 33%, the model performed better than chance, but performed worse than Naive Bayes, which had a score of <strong>58.3%</strong>. 
-        The first row shows that 3 'Low' visitation parks were correctly predicted as 'Low', none were incorrectly predicted as 'Medium', and 1 'Low' visitation park was incorrectly predicted as 'High'. 
+        The first row shows that 3 'Low' visitation parks were correctly predicted as 'Low', none were incorrectly predicted as 'Medium' and 1 'Low' visitation park was incorrectly predicted as 'High'. 
         The second row shows that none of the 'Medium' visitation parks were correctly classified as 'Medium'. Two were wrongly classified as 'Low' and 2 were wrongly classified as 'High'. The last row shows that 3 'High' visitation parks were correctly identified, 1 was wrongly classified as 'Low', and none were wrongly classified as 'Medium'. </p>
     </div>
 
     <div class="rp-dataset-block">
       <h2>Conclusion</h2>
-      <p>The Decision Tree analysis demonstrates that national park crowding levels can be partially predicted by looking at activity profiles, lodging, and camping characteristics. 
+      <p>The Decision Tree analysis demonstrates that national park crowding levels can be partially predicted by looking at activity profiles, lodging and camping characteristics. 
         The test accuracy of <strong>50%</strong> shows that the model reveals a relationship between park use assets and visitor traffic that does better than random chance. However, the breakdown of the predictions states that these patterns are heavily overlapped and it is seen in the middle range of visitation. 
         The algorithm failed to identify any 'Medium' visitation parks and split them evenly between the 'Low' and 'High' categories instead. It is clear that static features cannot be the only ones needed to forecast park crowding levels. Future models could benefit from incorporating more features.</p>
     </div>
