@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Decision Trees – National Park Crowding Analysis</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header>
+  <p class="eyebrow">National Park Crowding Analysis</p>
+  <h1>Decision Trees</h1>
+  <nav>
+    <a href="../index.html">Introduction</a>
+    <a href="dataprep_eda.html">Data Prep & EDA</a>
+    <a href="clustering.html">Clustering</a>
+    <a href="pca.html">PCA</a>
+    <a href="arm.html">ARM</a>
+    <a href="naivebayes.html">Naive Bayes</a>
+    <a href="dectrees.html" class="active">Decision Trees</a>
+    <a href="svms.html">SVMs</a>
+    <a href="regression.html">Regression</a>
+    <a href="nn.html">Neural Networks</a>
+    <a href="conclusions.html">Conclusions</a>
+  </nav>
+</header>
+
+<main>
+  <section class="rp-section">
+    <p class="section-label">National Park Crowding Analysis</p>
+    <hr class="rule">
+
+    <div class="rp-dataset-block">
+      <h2>Overview</h2>
+      <p>A Decision Tree is a supervised machine learning algorithm used for both classification and regression tasks that breaks down complex datasets into predefined categories or numerical targets using a sequential series of tree-like rules. 
+        To determine the most effective feature to split the data at each node, the algorithm calculates and compares data using mathematical metrics known as Entropy or Gini and ultimately selects the split that yields the highest Information Gain by reducing overall data noise. 
+        For example, evaluating a small group of national parks with mixed visitation levels involves measuring the baseline parent entropy and comparing it to the weighted entropy of the child nodes after splitting on a feature like entrance fees. The difference between these values provides the information gain score that determines the "goodness" of that split. 
+        This algorithm makes the locally optimal choice at each step. Since continuous numerical features offer an infinite number of split points, a tree can scale to an infinite depth if strict stopping parameters are not enforced.
+      </p>
+      <p>To figure out the absolute best questions, the algorithm uses Entropy or Gini to measure how mixed up a group of data is at any given point. While Entropy uses logarithmic scales to find pure groups, Gini calculates the probability of misclassification and can be faster. The algorithm then calculates Information Gain, which measures the actual drop in mix-up after a split. It always makes the best choice by selecting the split that clears up the most confusion.</p>
+    </div>
+
+    <figure class="rp-figure">
+      <img src="../images/decision_tree.png" width="700px" alt="Decision Tree example diagram">
+    </figure>
+
+    <figure class="rp-figure">
+      <img src="../images/gini_vs_entropy.png" width="700px" alt="Gini vs Entropy diagram">
+    </figure>
+
+    <hr class="rp-separator">
+
+    <figure class="rp-figure">
+      <img src="../images/park_agg.png" width="1000px" alt="Aggregated park data sample">
+      <figcaption>Decision Trees Sample Data</figcaption>
+    </figure>
+
+    <div class="rp-dataset-block">
+      <h2>Data Preparation</h2>
+      <p>The dataset was aggregated by park name with one row representing each national park. 
+        To create labeled data for supervised learning parks were classified into Low, Medium, and High visitation categories using Recreation Visits. 
+        Because these labels were derived from visitation data, Recreation Visits and Recreation Hours were excluded from the predictor variables to prevent data leakage. 
+        The model used recreation, lodging, camping, overnight stay, activity, and entrance fee characteristics to predict visitation level.
+      </p>
+      <p>The data was split into training and testing sets using an 80/20 split with train_test_split. First, the features were split from their labels and “Crowding Levels” was created by grouping recreation visits into Low, Medium, and High categories. 
+        Stratification was done so each class is represented in both datasets. The model was trained on the training set and then evaluated on the testing set. This was done to verify the results reflect how good the model performs on new and unseen data.</p>
+      <figure class="rp-figure"> 
+        <img src="../images/training_data.png" width="1000px" alt="Training data"> 
+        <figcaption> Figure 1. Training Data</figcaption>
+      </figure>
+      <figure class="rp-figure"> 
+        <img src="../images/test_data.png" width="1000px" alt="Test data after split"> 
+        <figcaption> Figure 2. Test Data</figcaption>
+      </figure>
+      <p>The training and test data are disjoint because this makes sure that the model will work on unseen data. If they were not disjoint, the model would not work on new data and potentially be biased</p>
+
+      <ul>
+        <li><a href="../data/park_agg.csv" target="_blank">National Parks DT Dataset</a></li>
+        <li><a href="../data/decision_tree.ipynb" target="_blank">Link to DT Code</a></li>
+      </ul>
+    </div>
+
+    <div class="rp-dataset-block">
+      <h2>Results</h2>
+      <p>
+        To see how well the Decision Tree modeling went, an accuracy score was conducted for three different types of decision trees. The first is an entropy decision tree, the second is a gini decision tree, and the third is another entropy tree with a higher set threshold to rule out overfitting.
+      </p>
+
+      <figure class="rp-figure">
+        <img src="../images/entropy_tree.png" width="500px" alt="Entropy DT">
+        <figcaption>Figure 3. Entropy Decision Tree</figcaption>
+      </figure>
+        <ul>
+        <li><a href="../images/entropy_tree.png" target="_blank">View Entropy Tree Full Image Here</a></li>
+        </ul>
+      <p>This decision tree uses the entropy criteria to measure node impurity. This criterion calculates the mathematical randomness of the data using a logarithmic scale. 
+        It runs without any depth limits or restrictions for splitting and it continues to branch until every single leaf node achieves an entropy score of zero.</p>
+
+      <figure class="rp-figure">
+        <img src="../images/gini_dt.png" width="500px" alt="Gini DT">
+        <figcaption>Figure 4. Gini Decision Tree</figcaption>
+      </figure>
+        <ul>
+        <li><a href="../images/gini_dt.png" target="_blank">View Gini Tree Full Image Here</a></li>
+        </ul>
+      <p>The second decision tree uses the Gini impurity criteria that measures the probability of a data point being misclassified based on the class distribution in that node. 
+        It also runs without structural limits and generates splits entirely by decreasing misclassification probability rather than calculating information gain through logs.</p>
+
+      <figure class="rp-figure">
+        <img src="../images/custom_entropy_dt.png" width="500px" alt="Custom DT">
+        <figcaption>Figure 5. Custom Entropy Decision Tree</figcaption>
+      </figure>
+        <ul>
+        <li><a href="../images/custom_entropy_dt.png" target="_blank">View  Custom Entropy Tree Full Image Here</a></li>
+        </ul>
+      <p>The third decision tree uses the entropy criteria but has a custom hyperparameter set at a min_impurity_decrease threshold of 0.06. 
+        The model tests possible splits and completely stops growth of a branch if the next proposed split fails to improve the total tree impurity by at least 6%.</p>
+
+      <figure class="rp-figure">
+        <img src="../images/dt_accuracy_scores.png" width="500px" alt="Accuracy Scores">
+        <figcaption>Figure 6. Accuracy Score</figcaption>
+      </figure>
+      <p>From the accuracy scores, we can see that the entropy model with the custom threshold set had the highest accuracy, at <strong>0.5</strong> or <strong>50%</strong>. </p>
+
+      <figure class="rp-figure">
+        <img src="../images/dt_confusion_matrix.png" width="500px" alt="Confusion Matrix">
+        <figcaption>Figure 7. Confusion Matrix Plot</figcaption>
+      </figure>
+
+      <p>For the Decision Tree analysis results, the supervised classification system could classify national parks into different levels of visitation: 'Low' visitation, 'Medium' visitation, and 'High' visitation better than random guessing. 
+        From the report above, the accuracy level is <strong>0.5</strong> or <strong>50%</strong>. Since random guessing would have had accuracy of 33%, the model performed better than chance, but performed worse than Naive Bayes, which had a score of <strong>58.3%</strong>. 
+        The first row shows that 3 'Low' visitation parks were correctly predicted as 'Low', none were incorrectly predicted as 'Medium', and 1 'Low' visitation park was incorrectly predicted as 'High'. 
+        The second row shows that none of the 'Medium' visitation parks were correctly classified as 'Medium'. Two were wrongly classified as 'Low' and 2 were wrongly classified as 'High'. The last row shows that 3 'High' visitation parks were correctly identified, 1 was wrongly classified as 'Low', and none were wrongly classified as 'Medium'. </p>
+    </div>
+
+    <div class="rp-dataset-block">
+      <h2>Conclusion</h2>
+      <p>The Decision Tree analysis demonstrates that national park crowding levels can be partially predicted by looking at activity profiles, lodging, and camping characteristics. 
+        The test accuracy of <strong>50%</strong> shows that the model reveals a relationship between park use assets and visitor traffic that does better than random chance. However, the breakdown of the predictions states that these patterns are heavily overlapped and it is seen in the middle range of visitation. 
+        The algorithm failed to identify any 'Medium' visitation parks and split them evenly between the 'Low' and 'High' categories instead. It is clear that static features cannot be the only ones needed to forecast park crowding levels. Future models could benefit from incorporating more features.</p>
+    </div>
+
+  </section>
+</main>
+
+</body>
+</html>

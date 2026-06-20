@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Naive Bayes – National Park Crowding Analysis</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header>
+  <p class="eyebrow">National Park Crowding Analysis</p>
+  <h1>Naive Bayes</h1>
+  <nav>
+    <a href="../index.html">Introduction</a>
+    <a href="dataprep_eda.html">Data Prep & EDA</a>
+    <a href="clustering.html">Clustering</a>
+    <a href="pca.html">PCA</a>
+    <a href="arm.html">ARM</a>
+    <a href="naivebayes.html" class="active">Naive Bayes</a>
+    <a href="dectrees.html">Decision Trees</a>
+    <a href="svms.html">SVMs</a>
+    <a href="regression.html">Regression</a>
+    <a href="nn.html">Neural Networks</a>
+    <a href="conclusions.html">Conclusions</a>
+  </nav>
+</header>
+
+<main>
+  <section class="rp-section">
+    <p class="section-label">National Park Crowding Analysis</p>
+    <hr class="rule">
+
+    <div class="rp-dataset-block">
+      <h2>Overview</h2>
+      <p>Naive Bayes is a supervised classification algorithm that uses Bayes’ theorem with an assumption of naivety to split up data observations into predefined categories. 
+        Using Bayes’ theorem, the model calculates the probability that an observation should go in each category based on its properties. 
+        Naive Bayes is “naive” because it assumes that all the features are independent of each other within each class. 
+        Multinomial Naive Bayes is used for nonnegative numeric, frequency, or count data. Bernoulli Naive Bayes is for binary variables, so each data observation would be 0 or 1. 
+        For my project, I will use Multinomial Naive Bayes to classify national parks into ‘Low’,’Medium’, and ‘High’ visitation levels. The feature types used to classify the national parks are: camping, recreation, activities, entrance fees, and region characteristics.
+      </p>
+    </div>
+
+    <hr class="rp-separator">
+
+    <figure class="rp-figure">
+      <img src="../images/park_agg.png" width="1000px" alt="Aggregated park data sample">
+      <figcaption>Naive Bayes Sample Data</figcaption>
+    </figure>
+
+    <div class="rp-dataset-block">
+      <h2>Data Preparation</h2>
+      <p>The dataset was aggregated by park name with one row representing each national park. 
+        To create labeled data for supervised learning parks were classified into Low, Medium, and High visitation categories using Recreation Visits. 
+        Because these labels were derived from visitation data, Recreation Visits and Recreation Hours were excluded from the predictor variables to prevent data leakage. 
+        The model used recreation, lodging, camping, overnight stay, activity, and entrance fee characteristics to predict visitation level.
+      </p>
+      <p>The data was split into training and testing sets using an 80/20 split with train_test_split. First, the features were split from their labels and “Crowding Levels” was created by grouping recreation visits into Low, Medium, and High categories. 
+        I used stratification so each class is represented in both datasets. The model was trained on the training set and then evaluated on the testing set. This was done to verify the results reflect how good the model performs on new and unseen data.</p>
+      <figure class="rp-figure"> 
+        <img src="../images/training_data.png" width="1000px" alt="Training data after split"> 
+        <figcaption> Figure 1. Training Data after split</figcaption>
+      </figure>
+      <figure class="rp-figure"> 
+        <img src="../images/test_data.png" width="1000px" alt="Test data after split"> 
+        <figcaption> Figure 2. Test data after split.</figcaption>
+      </figure>
+      <p>The training and test data are disjoint because this makes sure that the model will work on unseen data. If they were not disjoint, the model would not work on new data and potentially be biased</p>
+
+      <ul>
+        <li><a href="../data/park_agg.csv" target="_blank">National Parks Naive Bayes Dataset</a></li>
+        <li><a href="../data/naive_bayes.ipynb" target="_blank">Link to Naive Bayes Code</a></li>
+      </ul>
+    </div>
+
+    <div class="rp-dataset-block">
+      <h2>Results</h2>
+      <p>
+        To see how well the Naive Bayes training model did, a confusion matrix plot was made and an accuracy score was pulled.
+      </p>
+
+      <figure class="rp-figure">
+        <img src="../images/accuracy_score.png" width="500px" alt="Accuracy Score">
+        <figcaption>Figure 3. Accuracy Score</figcaption>
+      </figure>
+
+      <figure class="rp-figure">
+        <img src="../images/nb_confusion_matrix.png" width="500px" alt="Confusion Matrix">
+        <figcaption>Figure 4. Confusion Matrix Plot</figcaption>
+      </figure>
+
+      <p>For the Naive Bayes analysis results, the supervised classification system could classify national parks into different levels of visitation: 'Low' visitation, 'Medium' visitation, and 'High' visitation better than random guessing. From the report above, the accuracy level is <strong>0.583</strong> or <strong>58.3%</strong>. Since random guessing would have had accuracy of <strong>33%</strong>, the model performed better than chance. The first row shows that 2 'Low' visitation parks were correctly predicted as 'Low', 1 'Low' visitation park was incorrectly predicted as 'Medium', and 1 'Low' visitation park was incorrectly predicted as 'High'. The second row shows that 3 'Medium' visitation parks were correctly classified as 'Medium', 1 'Medium' visitation park was wrongly classified as 'High', and none were classified as 'Low'. The last row shows that 2 'High' visitation parks were correctly identified, 1 was wrongly classified as 'Low', and 1 was wrongly classified as 'Medium'.</p>
+    </div>
+
+    <div class="rp-dataset-block">
+      <h2>Conclusion</h2>
+      <p>From this analysis, it showed that national park visitation levels can be partially predicted using park activity and certain features such as camping, lodging, and recreational activity data. 
+        The model was able to differentiate between Low, Medium, and High visitation levels better than random guessing. This suggests that there are meaningful patterns in how different types of park utilization relates to overall crowding. 
+        However, the <strong>58.3%</strong> accuracy also shows that these patterns are not perfectly separable and there is still overlap between visitation levels that the model does not entirely capture.</p>
+    </div>
+
+  </section>
+</main>
+
+</body>
+</html>
