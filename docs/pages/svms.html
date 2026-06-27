@@ -33,13 +33,13 @@
 
     <div class="rp-dataset-block">
       <h2>Overview</h2>
-      <p>Support Vector Machine is a supervised learning algorithm that finds the best linear plane to cut through classes for classification. 
+      <p>Support Vector Machine is a supervised learning algorithm that finds the best hyperplane to cut through classes for classification. 
         The goal of an SVM is to maximize the margin for better classification performance. SVM requires numeric data because every data point is treated as a geometric vector in a multi-dimensional space and attempts to draw a physical boundary through that space.
         Linear separators are the decision boundary between one class and another in feature space. 
-        The kernel is a function that projects the data onto a higher dimensional plane for nonlinear data to find a separation.
+        The kernel is a function that projects the data onto a higher dimensional space for nonlinear data to find a separation.
         The dot product is critical to use because it measures the relationship between two data points to see how similar they are. 
         The polynomial kernel allows SVM to learn non-linear boundaries by mapping the data into a higher-dimensional feature space without calculating new coordinates.
-        The RBF kernel function finds the relationships between points using only their distances with the Euclidean distance. 
+        The RBF kernel measures similarity between points by applying a Gaussian function to the squared Euclidean distance, so that points closer together receive a higher kernel value and points far apart approach zero.
       </p>
     </div>
 
