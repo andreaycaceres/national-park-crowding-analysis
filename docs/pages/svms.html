@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support Vector Machines – National Park Crowding Analysis</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header>
+  <p class="eyebrow">National Park Crowding Analysis</p>
+  <h1>Support Vector Machines</h1>
+  <nav>
+    <a href="../index.html">Introduction</a>
+    <a href="dataprep_eda.html">Data Prep &amp; EDA</a>
+    <a href="clustering.html">Clustering</a>
+    <a href="pca.html">PCA</a>
+    <a href="arm.html">ARM</a>
+    <a href="naivebayes.html">Naive Bayes</a>
+    <a href="dectrees.html">Decision Trees</a>
+    <a href="svms.html" class="active">SVMs</a>
+    <a href="regression.html">Regression</a>
+    <a href="nn.html">Neural Networks</a>
+    <a href="conclusions.html">Conclusions</a>
+  </nav>
+</header>
+
+<main>
+  <section class="rp-section">
+    <p class="section-label">National Park Crowding Analysis</p>
+    <hr class="rule">
+
+    <div class="rp-dataset-block">
+      <h2>Overview</h2>
+      <p>Support Vector Machine is a supervised learning algorithm that finds the best linear plane to cut through classes for classification. 
+        The goal of an SVM is to maximize the margin for better classification performance. SVM requires numeric data because every data point is treated as a geometric vector in a multi-dimensional space and attempts to draw a physical boundary through that space.
+        Linear separators are the decision boundary between one class and another in feature space. 
+        The kernel is a function that projects the data onto a higher dimensional plane for nonlinear data to find a separation.
+        The dot product is critical to use because it measures the relationship between two data points to see how similar they are. 
+        The polynomial kernel allows SVM to learn non-linear boundaries by mapping the data into a higher-dimensional feature space without calculating new coordinates.
+        The RBF kernel function finds the relationships between points using only their distances with the Euclidean distance. 
+      </p>
+    </div>
+
+    <figure class="rp-figure">
+      <img src="../images/input_space_vs_feature_space.png" width="700" alt="Input vs Feature diagram">
+    </figure>
+
+    <figure class="rp-figure">
+      <img src="../images/common_kernels.png" width="700" alt="Common Kernels">
+    </figure>
+
+    <figure class="rp-figure">
+      <img src="../images/svm_example_problem.jpg" width="700" alt="SVM example problem">
+    </figure>
+
+    <hr class="rp-separator">
+
+    <figure class="rp-figure">
+      <img src="../images/park_agg.png" width="1000" alt="Aggregated park data sample">
+      <figcaption>Support Vector Machine Sample Data</figcaption>
+    </figure>
+
+    <div class="rp-dataset-block">
+      <h2>Data Preparation</h2>
+      <p>The dataset was aggregated by park name with one row representing each national park.
+        Since SVM requires labeled observations, a binary target variable 'High Crowding' was created. Observations 
+        above the median amount of recreation visits were labeled 1 and those below the median were labeled 0.
+        The goal of creating this binary target was to train the SVM classifier to predict whether a national park is likely to experience high or low crowding based on characteristics such as camping activity, lodging, backcountry recreation, number of activities, and entrance fees. The model can then determine which characteristics are best for separating highly crowded parks from less crowded parks.
+        The dataset was split into a training set of 75% and a testing set, 25%, using train_test_split(). The training set was used to build the SVM model and the testing set was used for evaluating model performance on unseen data. The two datasets are disjoint meaning that no observation appears in both sets to ensure an unbiased evaluation of the classifier.
+      </p>
+
+      <figure class="rp-figure"> 
+        <img src="../images/svm_training.png" width="1000" alt="Training data"> 
+        <figcaption>Figure 1. Training Data</figcaption>
+      </figure>
+      <figure class="rp-figure"> 
+        <img src="../images/svm_test.png" width="1000" alt="Test data"> 
+        <figcaption>Figure 2. Test Data</figcaption>
+      </figure>
+      <p>The training and test data are disjoint because this makes sure that the model will work on unseen data. If they were not disjoint, the model would not work on new data and potentially be biased.</p>
+
+      <h3>Resources</h3>
+      <ul>
+        <li><a href="../data/park_agg_for_svm.csv" target="_blank">National Parks DT Dataset</a></li>
+        <li><a href="../data/svm.ipynb" target="_blank">Link to SVM Code</a></li>
+      </ul>
+    </div>
+
+    <div class="rp-dataset-block">
+      <h2>Results</h2>
+
+      <p>To test each kernel, three different cost values were used (0.1, 1, 10). Cost values determine how strict penalties will be for misclassifications.</p>
+
+      <figure class="rp-figure">
+        <img src="../images/linear_kernel.png" width="500" alt="Linear Kernel">
+        <figcaption>Figure 3. Linear Kernel</figcaption>
+      </figure>
+
+      <p>From the confusion matrix, we can see that the linear kernel did not perform well. 6 out of 15 parks were classified correctly and 9 parks were incorrect. 5 low-crowded parks were identified as high crowding and 4 high-crowded parks were classified as low-crowding. From this, the relationship between the predictor variables and crowding level is not easily separated using a simple linear boundary.</p>
+
+      <figure class="rp-figure">
+        <img src="../images/polynomial_kernel.png" width="500" alt="Polynomial Kernel">
+        <figcaption>Figure 4. Polynomial Kernel</figcaption>
+      </figure>
+
+      <p>From the confusion matrix, we can see that the polynomial kernel performed better than the linear kernel. 9 out of 15 parks were classified correctly and 6 parks were classified incorrectly. The model identified 7 low-crowding parks correctly and 2 high-crowding parks. However, the model classified 5 high-crowding parks as low crowding showing that it still struggled to identify parks with high crowding. The polynomial kernel had the highest accuracy, but it was better at identifying low-crowding parks than high-crowding parks.</p>
+
+      <figure class="rp-figure">
+        <img src="../images/rbf_kernel.png" width="500" alt="RBF Kernel">
+        <figcaption>Figure 5. RBF Kernel</figcaption>
+      </figure>
+
+      <p>From the confusion matrix, we can see that the RBF kernel performed slightly better than the linear kernel but not as good as the polynomial kernel. 7 out of 15 parks were classified correctly and 8 parks were classified incorrectly. The model correctly identified 3 low-crowding parks and 4 high-crowding parks. However, it classified 5 low-crowding parks as high crowding and 3 high-crowding parks as low crowding. The RBF kernel was more balanced in identifying both classes, but its overall accuracy was lower than the polynomial kernel.</p>
+
+      <figure class="rp-figure">
+        <img src="../images/kernel_scoring.png" width="300" alt="Accuracy Scores">
+        <figcaption>Figure 6. Accuracy Score</figcaption>
+      </figure>
+      <p>The Polynomial kernel produced the highest classification accuracy at 60% which outperformed both the Linear kernel, 40%, and the RBF kernel, 46%. Since a polynomial boundary scored best, it can be said the relationship between the predictor variables and the crowding classification is not linear.</p>
+    </div>
+
+    <div class="rp-dataset-block">
+      <h2>Conclusion</h2>
+      <p>The SVM model helped in this research because it provided further analysis as to what features lead to high crowding in national parks. 
+        Through PCA and clustering analysis, we learned that crowding is more complex than simply relying on visitor count. 
+        The polynomial kernel, being the method with best accuracy, showed that the recreational, lodging, activities, non-recreation activity features do not have a linear relationship with crowding but rather something more complex. 
+        Parks see high crowding due to multiple factors interacting rather than one cause. 
+        These results matter because they show that the National Park Service could use data mining methods to identify parks that need more resources, staffing, transportation planning, or visitor management strategies.</p>
+    </div>
+
+  </section>
+</main>
+
+</body>
+</html>
