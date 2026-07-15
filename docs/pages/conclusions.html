@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="An introduction to the National Park Service visitation research project, exploring crowding patterns, visitation trends, and data-driven insights.">
+  <title>Conclusions – National Park Crowding Analysis</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header>
+  <p class="eyebrow">National Park Service Visitation Research</p>
+  <h1>National Parks – Crowding Analysis</h1>
+  <nav aria-label="Main navigation">
+    <a href="introduction.html">Introduction</a>
+    <a href="dataprep_eda.html">Data Prep & EDA</a>
+    <a href="clustering.html">Clustering</a>
+    <a href="pca.html">PCA</a>
+    <a href="naivebayes.html">Naive Bayes</a>
+    <a href="dectrees.html">Decision Trees</a>
+    <a href="svms.html">SVMs</a>
+    <a href="nn.html">Neural Networks</a>
+    <a href="conclusions.html" class="active" >Conclusions</a>
+  </nav>
+</header>
+
+<main>
+
+
+<hr class="rule">
+
+<section class="rp-section">
+  <h2>Conclusions</h2>
+  <p>National parks keep seeing more visitors every year, so understanding what drives crowding matters more than ever.
+    This project looked at visitation data collected across multiple years to find patterns across the National Park System.
+    Rather than focus on one park, the analysis compared parks nationwide using recreation, lodging, camping, visitation, and geographic features.
+    The results show that crowding can't be explained by one factor alone.
+    Instead, several park characteristics work together to shape how many visitors a park gets.
+    Some parks see much heavier visitor pressure than others even when they offer similar activities.
+    Seasonal changes, regional differences, and recreation opportunities all played a part in these differences.
+    These findings confirm that park visitation is a complex problem with many interacting pieces.
+    Understanding these patterns can help park managers plan ahead for future increases in visitation.
+    Overall, this project gives a full picture of what characteristics tend to line up with national park crowding.</p>
+
+<p>Clustering and PCA gave a clearer picture of how national parks group together based on recreation, camping, lodging, and visitation characteristics.
+    The k=2 clustering solution split parks into two basic groups: standard recreation parks and major destination parks.
+    Testing k=3 and k=4 uncovered more structure inside the data beyond that basic split.
+    Great Smoky Mountains National Park kept forming its own cluster because its visitation and recreation profile is so different from the rest.
+    The two-cluster solution had the highest silhouette score, but the four-cluster solution was chosen because it drew out more useful distinctions between park types.
+    Hierarchical clustering backed up this choice by showing similar major groupings.
+    PCA reduced the original ten variables down to a smaller set of components while still keeping most of the information.
+    The first two principal components explained 56.6% of the total variance.
+    Those components pointed to camping, lodging, backcountry recreation, and non-recreation visitation as the main factors separating parks from each other.
+    This lines up with the clustering results, since major destination parks like Yosemite, Yellowstone, Grand Canyon, and Great Smoky Mountains stood far apart from the rest of the parks in the dataset.</p>
+
+<p>Four supervised models were tested to see how well park characteristics could predict crowding, but they were not all solving the same exact problem.
+    Naive Bayes and the Decision Tree predicted three visitation levels, Low, Medium, and High, so random guessing on that problem lands around 33%.
+    Naive Bayes reached <strong>58.3%</strong> accuracy, which beats that 33% baseline by a solid margin.
+    The Decision Tree came in at <strong>50%</strong> accuracy, still ahead of random guessing but with a narrower gap, and it never predicted a single "Medium" park, splitting those cases evenly between Low and High instead.
+    Support Vector Machines and the Neural Network predicted a binary crowding label instead, so random guessing there sits closer to 50%.
+    The polynomial SVM reached <strong>60%</strong> accuracy, beating the linear kernel at 40% and the RBF kernel at 46%, and it cleared the 50% binary baseline by about ten points.
+    The Neural Network landed at <strong>46.7%</strong> accuracy, which is at or below that 50% binary baseline, meaning it performed about as well as flipping a coin.
+    Looking at against each model's own baseline, Naive Bayes and the polynomial SVM come out as the strongest performers, not just SVM alone.
+    The polynomial kernel outperforming the linear kernel also shows that the relationship between park features and crowding isn't linear, but something more complex tied to how recreation, lodging, activities, and non-recreation features interact.
+    Across all four models, the bigger takeaway is that no single park characteristic drives crowding on its own, and both model choice and the type of prediction task affect how well crowding can be predicted.</p>
+
+<p>These findings have real use for the National Park Service and other groups managing public land.
+    Knowing which park characteristics line up with higher visitation can help prioritize staffing, infrastructure upgrades, and transportation planning.
+    Parks with heavier crowding may need more investment to keep visitors safe while protecting natural resources.
+    Parks with lower visitation could benefit from better accessibility or outreach that draws more visitors without adding strain to already crowded parks.
+    Planning based on past visitation patterns can improve both conservation work and the visitor experience.
+    These results also show the value of pairing statistical analysis with machine learning methods rather than relying on just one approach.
+    Data driven decision making lets managers use limited resources more effectively while balancing recreation and conservation goals.
+    As visitation keeps climbing nationwide, tools like the ones used in this project will only become more useful.
+    The SVM results in particular show that the National Park Service could use data mining to flag which parks need more resources, staffing, transportation planning, or visitor management strategies.
+    Ultimately, these insights support more informed decisions about managing America's national parks going forward.</p>
+
+<p>This project found solid patterns in national park visitation data, but there is still room for more research.
+    The small number of national parks available limited how complex some models could get, especially the Neural Network.
+    Adding more years of visitation data or including other National Park Service units could give future models more to work with and improve performance.
+    Future studies could also bring in weather conditions, nearby population numbers, transportation access, social media activity, wildfire events, or economic indicators to better explain visitation.
+    Time series forecasting could be used to predict future visitation instead of just classifying past crowding levels.
+    Deeper models might improve classification accuracy once larger datasets are available.
+    Even with these limits, this project shows that data analysis can offer real insight into what drives national park visitation.
+    Combining visualization, clustering, PCA, and several supervised models gave a well rounded look at crowding across the National Park System.
+    Model choice mattered a lot here too, since accuracy ranged from close to random guessing up to the strongest polynomial SVM result.
+    Overall, this research shows how data science can help with evidence based decisions to help protect these public lands for the future.</p>
+</section>
+
+
+</main>
+
+</body>
+</html>
